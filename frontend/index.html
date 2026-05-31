@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TaskFlow — Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true"></div>
+
+    <main class="app">
+      <header class="header">
+        <div class="brand">
+          <div class="brand-icon" aria-hidden="true">✦</div>
+          <div>
+            <p class="brand-tag">Task Manager</p>
+            <h1>TaskFlow</h1>
+          </div>
+        </div>
+        <div id="sessionBar" class="session hidden">
+          <div class="avatar" id="userAvatar" aria-hidden="true">U</div>
+          <div class="session-meta">
+            <span id="sessionUser" class="session-name"></span>
+            <span class="session-label">Signed in</span>
+          </div>
+          <button id="logoutBtn" type="button" class="btn btn-ghost btn-sm">Logout</button>
+        </div>
+      </header>
+
+      <div id="toastHost" class="toast-host" role="status" aria-live="polite"></div>
+
+
+      <section id="authSection" class="auth-panel">
+        <div class="auth-card">
+          <h2 id="authHeading">Welcome back</h2>
+          <p class="auth-sub">Organize work across Todo, In Progress, and Done.</p>
+
+          <div class="auth-toggle" role="tablist">
+            <button type="button" data-mode="login" class="toggle active" role="tab">Login</button>
+            <button type="button" data-mode="register" class="toggle" role="tab">Register</button>
+          </div>
+
+          <form id="authForm" class="form">
+            <label id="nameField" class="field hidden">
+              <span>Full name</span>
+              <input id="nameInput" type="text" placeholder="Alex Morgan" autocomplete="name" />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input id="emailInput" type="email" placeholder="you@company.com" required autocomplete="email" />
+            </label>
+            <label class="field">
+              <span>Password</span>
+              <div class="password-wrap">
+                <input
+                  id="passwordInput"
+                  type="password"
+                  placeholder="Min. 6 characters"
+                  required
+                  minlength="6"
+                  autocomplete="current-password"
+                />
+                <button type="button" id="togglePassword" class="btn-icon" aria-label="Show password">👁</button>
+              </div>
+            </label>
+            <button id="authSubmitBtn" type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+        </div>
+      </section>
+
+
+      <section id="appSection" class="workspace hidden">
+        <div class="toolbar">
+          <div class="search-wrap">
+            <input id="searchInput" type="search" placeholder="Search tasks…" aria-label="Search tasks" />
+          </div>
+          <button id="newTaskBtn" type="button" class="btn btn-primary">+ New task</button>
+        </div>
+
+        <div id="statsRow" class="stats-row"></div>
+
+        <div id="taskBoard" class="board"></div>
+      </section>
+    </main>
+
+
+    <dialog id="taskModal" class="modal">
+      <form id="taskForm" class="modal-body">
+        <header class="modal-header">
+          <h2 id="modalTitle">New task</h2>
+          <button type="button" id="modalCloseBtn" class="btn-icon" aria-label="Close">✕</button>
+        </header>
+        <input id="taskIdInput" type="hidden" />
+        <label class="field">
+          <span>Title</span>
+          <input id="titleInput" type="text" placeholder="What needs to be done?" required />
+        </label>
+        <label class="field">
+          <span>Stage</span>
+          <select id="stageInput" required>
+            <option value="Todo">Todo</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Done">Done</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Priority</span>
+          <select id="priorityInput">
+            <option value="0">Normal</option>
+            <option value="1">High</option>
+            <option value="2">Urgent</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Description</span>
+          <textarea id="descriptionInput" rows="4" placeholder="Add context, links, or notes…"></textarea>
+        </label>
+        <footer class="modal-footer">
+          <button type="button" id="taskCancelBtn" class="btn btn-ghost">Cancel</button>
+          <button id="taskSubmitBtn" type="submit" class="btn btn-primary">Save task</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <div id="globalLoader" class="global-loader hidden" aria-hidden="true">
+      <div class="spinner"></div>
+    </div>
+
+    <script src="./config.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
