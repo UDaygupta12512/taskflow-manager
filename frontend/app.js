@@ -122,9 +122,6 @@ async function refreshAccessToken() {
 }
 
 async function api(path, options = {}, retry = true) {
-  if (!API_BASE) {
-    throw new Error('API URL not configured. Set window.TASKFLOW_API_URL in config.js');
-  }
 
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
   if (state.accessToken) headers.Authorization = `Bearer ${state.accessToken}`;
@@ -488,11 +485,6 @@ function bindEvents() {
 async function init() {
   bindEvents();
   setAuthMode('login');
-
-  if (!API_BASE) {
-    toast('Configure API URL in config.js', 'error');
-    return;
-  }
 
   if (state.accessToken && state.user) {
     showAuthenticatedView();
