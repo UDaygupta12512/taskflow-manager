@@ -1,7 +1,0 @@
-[build]
-  publish = "frontend"
-
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Access-Control-Allow-Origin = "*"

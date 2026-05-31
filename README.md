@@ -2,14 +2,11 @@
 
 A full-stack task manager for the intern assignment. Users register and log in with **JWT access tokens** and **server-side refresh sessions**, then manage tasks across **Todo**, **In Progress**, and **Done** on a drag-and-drop kanban board.
 
-## Live links
+## Live deployment
 
-| Layer    | URL |
-|----------|-----|
-| Frontend | _Add your Netlify / Vercel URL after deploy_ |
-| Backend  | _Add your Render / Railway URL after deploy_ |
-
-> After deploying the backend, set `window.TASKFLOW_API_URL` in [`frontend/config.js`](frontend/config.js), then redeploy the frontend.
+| Project | URL |
+|---------|-----|
+| Full Stack App | _Add your Render URL after deploy_ |
 
 ## Features
 
@@ -60,30 +57,19 @@ INDPRO/
 │   ├── data/              # SQLite file (created at runtime)
 │   ├── package.json
 │   └── .env.example
-├── netlify.toml
 └── render.yaml
 ```
 
 ## Run locally
 
-**1. Backend**
-
 ```bash
 cd backend
 cp .env.example .env   # optional; defaults work for local dev
 npm install
-npm start
+npm run dev
 ```
 
-API: `http://localhost:4000` — see `GET /api` for endpoint list.
-
-**2. Frontend**
-
-```bash
-npx serve frontend -l 3000
-```
-
-Open `http://localhost:3000`.
+Open `http://localhost:4000` in your browser. The backend automatically serves the frontend!
 
 ## API reference
 
@@ -112,20 +98,15 @@ Open `http://localhost:3000`.
 
 Valid stages: `Todo`, `In Progress`, `Done`.
 
-## Deployment
+## Deployment (Single Platform via Render)
 
-### Backend (Render)
+The Express backend automatically serves the frontend, meaning the entire application can be deployed as a single Web Service on Render.
 
-1. Push to GitHub.
-2. Create Web Service from repo (`render.yaml` included).
-3. Set env vars: `JWT_ACCESS_SECRET`, `JWT_REFRESH_SECRET`, `CORS_ORIGIN` (your frontend URL).
-4. Optional: attach a **persistent disk** at `backend/data` so SQLite survives redeploys.
-
-### Frontend (Netlify)
-
-1. Connect repo; `netlify.toml` publishes `frontend/`.
-2. Update [`frontend/config.js`](frontend/config.js) with your API URL.
-3. Redeploy and add live URLs to this README.
+1. Push your code to GitHub.
+2. Go to [Render.com](https://render.com) and create a **New Web Service**.
+3. Connect your repository. Render will automatically detect the `render.yaml` blueprint.
+4. Click **Apply**. Render will build and deploy the app.
+5. The URL Render provides will host both your frontend interface and backend API!
 
 ## Assumptions
 
