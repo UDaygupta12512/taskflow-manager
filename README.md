@@ -6,7 +6,7 @@ A full-stack task manager for the intern assignment. Users register and log in w
 
 | Project | URL |
 |---------|-----|
-| Full Stack App | _Add your Render URL after deploy_ |
+| Full Stack App | https://taskflow-manager-ywlp.onrender.com/ |
 
 ## Features
 
